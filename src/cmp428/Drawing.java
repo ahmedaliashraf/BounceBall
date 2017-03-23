@@ -11,9 +11,9 @@ import java.awt.event.MouseListener;
 
 public class Drawing extends Applet implements Runnable, KeyListener, MouseListener{
 	
-	Line L = new Line(800,400,20,400);
-	Line L2 = new Line(20,100,800,100);
-	Circle C = new Circle(500,500,20);
+	Line L = new Line(600,278,0,278);
+	Line L2 = new Line(0,41,600,41);
+	Circle C = new Circle(100,100,20);
 	Tank tank = new Tank(200,200,0);
 	
 	Image background;
