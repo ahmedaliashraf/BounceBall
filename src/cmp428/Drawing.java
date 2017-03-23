@@ -13,7 +13,7 @@ public class Drawing extends Applet implements Runnable, KeyListener, MouseListe
 	
 	Line L = new Line(600,278,0,278);
 	Line L2 = new Line(0,41,600,41);
-	Circle C = new Circle(100,100,20);
+	Circle C = new Circle(100,100,20,0);
 	Tank tank = new Tank(200,200,0);
 	
 	Image background;
@@ -40,7 +40,7 @@ public class Drawing extends Applet implements Runnable, KeyListener, MouseListe
 		C.draw(g);
 		tank.draw(g);
 		
-		if(L.distanceTo(C.x, C.y)< C.r || L2.distanceTo(C.x, C.y)< C.r) message = "Collision";
+		if(L.distanceTo((int)C.x, (int)C.y)< C.r || L2.distanceTo((int)C.x, (int)C.y)< C.r) message = "Collision";
 		else							message = "No Collision";
 		g.drawString(message, 0, 10);
 		
@@ -141,38 +141,40 @@ public class Drawing extends Applet implements Runnable, KeyListener, MouseListe
 				greenguy.moveLeftBy(2);
 				battlelord.moveLeftBy(2);
 				r.moveLeftBy(2);
-				C.moveLeftBy(2);
+				C.rotateLeftBy(2);
 				tank.rotateLeftBy(2);
 			}	
 			if (rightPressed){
 				greenguy.moveRightBy(2);
 				battlelord.moveRightBy(2);
 				r.moveRightBy(2);
-				C.moveRightBy(2);
+				C.rotateRightBy(2);
 				tank.rotateRightBy(2);
 			}
 			if (upPressed){
 				greenguy.moveUpBy(2);
 				battlelord.moveUpBy(2);
 				r.moveUpBy(2);
-				C.moveUpBy(2);
+				C.moveForwardBy(6);
 				tank.moveForwardBy(3);
 			}
 			if (downPressed){
 				greenguy.moveDownBy(2);
 				battlelord.moveDownBy(2);
 				r.moveDownBy(10);
-				C.moveDownBy(2);
+				C.moveBackwardBy(2);
 				tank.moveBackwardBy(1);
 			}
 			//*/
 			
-			double d = L.distanceTo(C.x, C.y);
-			double d2 = L2.distanceTo(C.x, C.y);
+			double d = L.distanceTo((int)(C.x), (int)(C.y));
+			
 			if (d<C.r){
 				C.moveBy((int)((C.r-d)*L.yv), (int)((d-C.r)*L.xv));
-			} else if (d2<C.r){
-				C.moveBy((int)((C.r-d2)*L2.yv), (int)((d2-C.r)*L2.xv));
+			}
+			d= L2.distanceTo((int)(C.x), (int)(C.y));
+			if (d<C.r){
+				C.moveBy((int)((C.r-d)*L2.yv), (int)((d-C.r)*L2.xv));
 			}
 			
 			repaint(); //asks OS to call paint

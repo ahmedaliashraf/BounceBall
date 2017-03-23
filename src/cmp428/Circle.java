@@ -1,20 +1,48 @@
 package cmp428;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Circle {
 	
-	int x,y;
+	double x,y;
 	int r;
-	public Circle(int x, int y, int r) {
+	int angle;
+	
+	public Circle(double x, double y, int r, int angle) {
 		super();
 		this.x = x;
 		this.y = y;
 		this.r = r;
+		this.angle = angle;
 	}
 	
 	public void draw(Graphics g){
-		g.drawOval(x-r, y-r, 2*r, 2*r);
+		g.setColor(Color.YELLOW);
+		g.fillOval((int)x-r, (int)y-r, 2*r, 2*r);
+		g.setColor(Color.BLACK);
+		g.drawOval((int)x-r, (int)y-r, 2*r, 2*r);
+		g.drawLine((int)x, (int)y, (int)(r*Lookup.cos[angle]+x),(int) (r*Lookup.sin[angle]+y));
+	}
+	
+	public void rotateLeftBy(int degrees){
+		angle -= degrees;
+		if(angle<0)		angle+=360;
+	}
+	
+	public void rotateRightBy(int degrees){
+		angle += degrees;
+		if(angle>359)	angle-=360;
+	}
+	
+	public void moveForwardBy(int d){
+		x += (int) d * Lookup.cos[angle];
+		y += (int) d * Lookup.sin[angle];
+	}
+	
+	public void moveBackwardBy(int d){
+		x -= (int) d * Lookup.cos[angle];;
+		y -= (int) d * Lookup.sin[angle];		
 	}
 	
 	public void moveBy(int dx, int dy){
@@ -22,18 +50,19 @@ public class Circle {
 		y += dy;
 	}
 	
-	public void moveLeftBy(int dx){
-		x -= dx;
-	}
 	
-	public void moveRightBy(int dx){
-		x += dx;
-	}
-	public void moveUpBy(int dy){
-		y -= dy;
-	}
-	public void moveDownBy(int dy){
-		y += dy;
-	}
+//	public void moveLeftBy(int dx){
+//		x -= dx;
+//	}
+//	
+//	public void moveRightBy(int dx){
+//		x += dx;
+//	}
+//	public void moveUpBy(int dy){
+//		y -= dy;
+//	}
+//	public void moveDownBy(int dy){
+//		y += dy;
+//	}
 
 }
