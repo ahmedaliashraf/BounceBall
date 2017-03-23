@@ -13,10 +13,11 @@ public class Drawing extends Applet implements Runnable, KeyListener, MouseListe
 	
 	Line L = new Line(600,278,0,278);
 	Line L2 = new Line(0,41,600,41);
-	Circle C = new Circle(100,100,20);
+	Circle C = new Circle(20,258,20,27);
 	Tank tank = new Tank(200,200,0);
 	
-	Image background;
+	Image background,offScreen;
+	Graphics offScreen_g;
 	
 	BattleLord battlelord;
 	GreenGuy greenguy;
@@ -40,7 +41,7 @@ public class Drawing extends Applet implements Runnable, KeyListener, MouseListe
 		C.draw(g);
 		tank.draw(g);
 		
-		if(L.distanceTo(C.x, C.y)< C.r || L2.distanceTo(C.x, C.y)< C.r) message = "Collision";
+		if(L.distanceTo((int)C.x, (int)C.y)< C.r || L2.distanceTo((int)C.x, (int)C.y)< C.r) message = "Collision";
 		else							message = "No Collision";
 		g.drawString(message, 0, 10);
 		
@@ -55,7 +56,16 @@ public class Drawing extends Applet implements Runnable, KeyListener, MouseListe
 		//*/
 	}
 	
+	public void update(Graphics g){
+		offScreen_g.clearRect(0, 0, 508, 317);
+		paint(offScreen_g);
+		g.drawImage(offScreen, 0, 0, this);
+	}
+	
 	public void init(){
+		
+		offScreen = this.createImage(508,317);
+		offScreen_g = offScreen.getGraphics();
 		
 		background = Toolkit.getDefaultToolkit().getImage("bounceBall/bounce_background.gif");
 		battlelord = new BattleLord(1000,300);
@@ -141,38 +151,56 @@ public class Drawing extends Applet implements Runnable, KeyListener, MouseListe
 				greenguy.moveLeftBy(2);
 				battlelord.moveLeftBy(2);
 				r.moveLeftBy(2);
-				C.moveLeftBy(2);
+				if (C.isOnGround){
+					C.angle = 110;
+					C.moveForwardBy(3);
+					System.out.print("On Ground");
+				}
 				tank.rotateLeftBy(2);
 			}	
 			if (rightPressed){
 				greenguy.moveRightBy(2);
 				battlelord.moveRightBy(2);
 				r.moveRightBy(2);
-				C.moveRightBy(2);
+				if (C.isOnGround){
+					C.angle = 35;
+					C.moveForwardBy(3);
+					System.out.print("On Ground");
+				}
 				tank.rotateRightBy(2);
 			}
 			if (upPressed){
 				greenguy.moveUpBy(2);
 				battlelord.moveUpBy(2);
 				r.moveUpBy(2);
-				C.moveUpBy(2);
+				if(C.isOnGround){
+					C.jumpUpBy(6);
+				}
 				tank.moveForwardBy(3);
 			}
 			if (downPressed){
 				greenguy.moveDownBy(2);
 				battlelord.moveDownBy(2);
 				r.moveDownBy(10);
-				C.moveDownBy(2);
+				C.moveBackwardBy(2);
 				tank.moveBackwardBy(1);
 			}
 			//*/
 			
-			double d = L.distanceTo(C.x, C.y);
-			double d2 = L2.distanceTo(C.x, C.y);
+			double d = L.distanceTo((int)(C.x), (int)(C.y));
+			
 			if (d<C.r){
 				C.moveBy((int)((C.r-d)*L.yv), (int)((d-C.r)*L.xv));
-			} else if (d2<C.r){
-				C.moveBy((int)((C.r-d2)*L2.yv), (int)((d2-C.r)*L2.xv));
+				//C.isOnGround = true;
+			}else{
+				//C.isOnGround = false;
+			}
+			d= L2.distanceTo((int)(C.x), (int)(C.y));
+			if (d<C.r){
+				C.moveBy((int)((C.r-d)*L2.yv), (int)((d-C.r)*L2.xv));
+				//C.hitCeiling = true;
+			}else{
+				//C.hitCeiling = false;
 			}
 			
 			repaint(); //asks OS to call paint
