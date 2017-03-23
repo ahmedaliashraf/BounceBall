@@ -8,6 +8,7 @@ public class Circle {
 	double x,y;
 	int r;
 	int angle;
+	boolean isOnGround,hitCeiling;
 	
 	public Circle(double x, double y, int r, int angle) {
 		super();
@@ -15,10 +16,12 @@ public class Circle {
 		this.y = y;
 		this.r = r;
 		this.angle = angle;
+		isOnGround = true;
+		hitCeiling = false;
 	}
 	
 	public void draw(Graphics g){
-		g.setColor(Color.YELLOW);
+		g.setColor(Color.RED);
 		g.fillOval((int)x-r, (int)y-r, 2*r, 2*r);
 		g.setColor(Color.BLACK);
 		g.drawOval((int)x-r, (int)y-r, 2*r, 2*r);
@@ -50,6 +53,13 @@ public class Circle {
 		y += dy;
 	}
 	
+	public void jumpUpBy(int dy) {
+		y -= dy;
+	}
+
+//	public void moveDownBy(int dy) {
+//		y += dy;
+//	}
 	
 //	public void moveLeftBy(int dx){
 //		x -= dx;
@@ -58,11 +68,6 @@ public class Circle {
 //	public void moveRightBy(int dx){
 //		x += dx;
 //	}
-//	public void moveUpBy(int dy){
-//		y -= dy;
-//	}
-//	public void moveDownBy(int dy){
-//		y += dy;
-//	}
+
 
 }
