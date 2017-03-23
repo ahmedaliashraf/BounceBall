@@ -2,6 +2,8 @@ package cmp428;
 
 import java.applet.Applet;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -9,12 +11,12 @@ import java.awt.event.MouseListener;
 
 public class Drawing extends Applet implements Runnable, KeyListener, MouseListener{
 	
-	Line L = new Line(800,400,20,400);
-	Line L2 = new Line(20,100,800,100);
-	Circle C = new Circle(500,500,20);
+	Line L = new Line(600,278,0,278);
+	Line L2 = new Line(0,41,600,41);
+	Circle C = new Circle(100,100,20);
 	Tank tank = new Tank(200,200,0);
 	
-	
+	Image background;
 	
 	BattleLord battlelord;
 	GreenGuy greenguy;
@@ -32,7 +34,7 @@ public class Drawing extends Applet implements Runnable, KeyListener, MouseListe
 	boolean downPressed = false;	 
 	
 	public void paint(Graphics g){
-		
+		g.drawImage(background, 0, 0, this);
 		L.draw(g);
 		L2.draw(g);
 		C.draw(g);
@@ -54,6 +56,8 @@ public class Drawing extends Applet implements Runnable, KeyListener, MouseListe
 	}
 	
 	public void init(){
+		
+		background = Toolkit.getDefaultToolkit().getImage("bounceBall/bounce_background.gif");
 		battlelord = new BattleLord(1000,300);
 		greenguy = new GreenGuy(500,200);
 		r = new Rect(500,400,100,50);
