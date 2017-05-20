@@ -68,8 +68,9 @@ public class CircleBetter {
 	
 	private void update()
 	{
+		y += velocityY;
 	    velocityY += gravity;
-	    y += velocityY;
+	    
 	    x += velocityX;
 	    
 	    if(y > currentGroundY)

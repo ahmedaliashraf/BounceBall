@@ -11,7 +11,7 @@ public class Ball extends CircleBetter {
 		if(input[GameApplet.UP])	jumpUpBy(3);
 		//if(input[GameApplet.DN])	moveBackwardBy(1);
 		if(input[GameApplet.RT])	moveForwardBy(3);
-		if(input[GameApplet.LT])	moveBackwardBy(1);
+		//if(input[GameApplet.LT])	moveBackwardBy(1);
 	}
 
 }

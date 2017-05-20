@@ -55,6 +55,7 @@ public class Drawing extends GameApplet {
 			C.moveBy((int)((C.r-d)*midLine.yv), (int)((d-C.r)*midLine.xv));
 			C.currenGroundX = C.x;
 			C.currentGroundY = C.y;
+			C.isOnGround = true;
 			//C.hitCeiling = true;
 		}else{
 			//C.hitCeiling = false;
