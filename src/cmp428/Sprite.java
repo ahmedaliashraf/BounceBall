@@ -11,6 +11,7 @@ public class Sprite {
 	public static final int LT = 2;
 	public static final int RT = 3;
 	
+	//public static final int IDL = 0;
 	int action = DN;
 	
 	boolean moving = false;
@@ -64,6 +65,7 @@ public class Sprite {
 		action = DN;
 		moving = true;
 	}
+	
 
 	public void draw(Graphics g){
 		if (moving)		g.drawImage(animation[action].nextImage(), x, y, null);
@@ -71,6 +73,7 @@ public class Sprite {
 		else			g.drawImage(animation[action].staticImage(), x, y, null);
 		
 		moving = false;
+		//g.drawImage(animation[action].nextImage(), x, y, null);
 		g.drawRect(x, y, w, h);
 	}
 }

@@ -1,5 +1,6 @@
 package cmp428;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public abstract class PolygonModel2D {
@@ -10,6 +11,10 @@ public abstract class PolygonModel2D {
 	
 	int[][] struct_y = y_data();
 	
+	
+	Color[] color = getColors();
+	
+	
 	public PolygonModel2D(double x, double y, int angle) {
 		super();
 		this.x = x;
@@ -19,6 +24,7 @@ public abstract class PolygonModel2D {
 	
 	public abstract int[][] x_data();
 	public abstract int[][] y_data();
+	public abstract Color[] getColors();
 	
 	public void draw(Graphics g){
 		int[] xpoints = new int[4];
@@ -32,6 +38,9 @@ public abstract class PolygonModel2D {
 				xpoints[vert] = (int) (struct_x[poly][vert]*cosA - struct_y[poly][vert]*sinA +x);
 				ypoints[vert] = (int) (struct_x[poly][vert]*sinA + struct_y[poly][vert]*cosA +y);
 			}
+			g.setColor(color[poly]);
+			g.fillPolygon(xpoints, ypoints, struct_x[poly].length);
+			g.setColor(Color.black);
 			g.drawPolygon(xpoints, ypoints, struct_x[poly].length);
 		}
 	}
