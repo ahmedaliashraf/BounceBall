@@ -1,6 +1,8 @@
 package cmp428;
 
 import java.applet.Applet;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -10,25 +12,37 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Drawing extends GameApplet {
-	Image background = Toolkit.getDefaultToolkit().getImage("bounceBall/bounce_background.gif");
-	Line groundLine = new Line(600,278,0,278);
-	Line midLine = new Line(600,158,254,158);
-	Line ceilingLine = new Line(0,41,600,41);
-	Ball C = new Ball(20,257,20);
+//	Image background = Toolkit.getDefaultToolkit().getImage("bounceBall/bounce_background.gif");
+//	Line groundLine = new Line(600,278,0,278);
+//	Line midLine = new Line(450,158,0,158);
+//	Line ceilingLine = new Line(0,41,600,41);
+//	Ball B = new Ball(20,257,20);
+	
 //	Tank tank = new Tank(200,200,0);
 //	BadTank btank = new BadTank(200,400,0);
 	
+	Ball B;
+	BackgroundLayer background;
+	Rect bottom0;
+//	Rect bottom1;
+//	Rect[] rArr = new Rect[1];
 	
 	@Override
 	public void initialize() {
-		// TODO Auto-generated method stub
-
+		background = new BackgroundLayer("bounceBall/bounce_background.gif",0,0);
+		B = new Ball(20,695,20);
+		bottom0 = new Rect(0,278,255,40);
+		//bottom1 = new Rect(0,250,100,200);
+		//for(int i=0;i<2;i++){
+		///rArr[0] = bottom0;
+		//rArr[1] = bottom1;
+		//}
 	}
 
 	@Override
 	public void respondToInput() {
 		//tank.respondToInput(input);
-		C.respondToInput(input);
+		B.respondToInput(input);
 		if(input[_D])	Camera2D.moveRightBy(50);
 		if(input[_A])	Camera2D.moveLeftBy(50);
 		
@@ -42,25 +56,25 @@ public class Drawing extends GameApplet {
 	@Override
 	public void handleCollisions() {
 		//Collision detection
-		double d = groundLine.distanceTo((int)(C.x), (int)(C.y));
-		
-		if (d<C.r){
-			C.moveBy((int)((C.r-d)*groundLine.yv), (int)((d-C.r)*groundLine.xv));
-			//C.isOnGround = true;
-		}else{
-			//C.isOnGround = false;
-		}
-		d= midLine.distanceTo((int)(C.x), (int)(C.y));
-		if (d<C.r){
-			C.moveBy((int)((C.r-d)*midLine.yv), (int)((d-C.r)*midLine.xv));
-			C.currenGroundX = C.x;
-			C.currentGroundY = C.y;
-			C.isOnGround = true;
-			//C.hitCeiling = true;
-		}else{
-			//C.hitCeiling = false;
-		}
-		
+//		double d = groundLine.distanceTo((int)(C.x), (int)(C.y));
+//		
+//		if (d<C.r){
+//			C.moveBy((int)((C.r-d)*groundLine.yv), (int)((d-C.r)*groundLine.xv));
+//			//C.isOnGround = true;
+//		}else{
+//			//C.isOnGround = false;
+//		}
+//		d= midLine.distanceTo((int)(C.x), (int)(C.y));
+//		if (d<C.r){
+//			C.moveBy((int)((C.r-d)*midLine.yv), (int)((d-C.r)*midLine.xv));
+//			//C.currenGroundX = C.x;
+//			//C.currentGroundY = C.y;
+//			C.isOnGround = true;
+//			//C.hitCeiling = true;
+//		}else{
+//			//C.hitCeiling = false;
+//		}
+		//B.hasCollidedWith(rArr);
 
 	}
 	
@@ -68,12 +82,21 @@ public class Drawing extends GameApplet {
 		//layer1.draw(g);
 //		tank.draw(g);
 //		btank.draw(g);
-		g.drawImage(background, 0, 0, this);
-		ceilingLine.draw(g);
-		midLine.draw(g);
-		groundLine.draw(g);
-		C.draw(g);
+		background.draw(g);
+		//ceilingLine.draw(g);
+		//midLine.draw(g);
+		//groundLine.draw(g);
+		g.drawImage(Toolkit.getDefaultToolkit().getImage("bounceBall/door.jpg"), 1170 , 560, this);
+		B.draw(g);
 		
+		if(B.x>=1200 && B.y>=600){
+			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 100));
+			g.setColor(Color.BLUE);
+			g.drawString("You Won!", 620, 375);
+			paused = true;
+		}
+		//bottom0.draw(g);
+		//bottom1.draw(g);
 	}
 		 
 	
