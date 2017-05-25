@@ -16,7 +16,6 @@ public class BackgroundLayer {
 	}
 	
 	public void draw(Graphics g){
-		//g.drawImage(image, (int)(x-Camera2D.x), (int)(y-Camera2D.y), null);
 		g.drawImage(image, (int)(x), (int)(y), null);
 	}
 

@@ -10,7 +10,7 @@ public class Ball extends CircleBetter {
 	
 	public void respondToInput(boolean[] input){
 		if(input[GameApplet.UP])	jumpUp();
-		//if(input[GameApplet.DN])	moveBackwardBy(1);
+		if(input[GameApplet.DN])	stopJump();
 		if(input[GameApplet.RT])	moveForwardBy(3);
 		if(input[GameApplet.LT])	moveBackwardBy(2);
 	}

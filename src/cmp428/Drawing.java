@@ -12,55 +12,51 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Drawing extends GameApplet {
-//	Image background = Toolkit.getDefaultToolkit().getImage("bounceBall/bounce_background.gif");
-	Line firstLine = new Line(252,580,252,715);
-	Line secondLine = new Line(450,500,450,715);
-	Line thirdLine = new Line(492,400,492,717);
-	Line fourthLine = new Line(544,300,544,717);
-	Line fifthLine = new Line(595,200,595,717);
-	Line sixthLine = new Line(646,100,646,717);
-	Line seventhLine = new Line(697,100,697,717);
-	Line eigthLine = new Line(748,100,748,717);
-	Line ninthLine = new Line(799,100,799,717);
-	Line tenthLine = new Line(945,100,945,717);
-	Line eleventhLine = new Line(995,100,995,717);
-	Line twelveLine = new Line(1090,100,1090,717);
-	Line thirteenthLine = new Line(1140,100,1140,717);
-//	Ball B = new Ball(20,257,20);
-	
-//	Tank tank = new Tank(200,200,0);
-//	BadTank btank = new BadTank(200,400,0);
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	Line firstLine,secondLine,thirdLine,fourthLine,fifthLine,sixthLine,
+		seventhLine,eigthLine,ninthLine,tenthLine,eleventhLine,twelveLine,thirteenthLine; 
 	
 	Ball B;
 	BackgroundLayer background;
 	Rect obs1,obs2,obs3;
 	Rect lifeR;
-//	Rect bottom1;
-	Rect[] rArr = new Rect[3];
-	Rect[] lifeRectArr = new Rect[1];
+	Rect[] rArr;
+	Rect[] lifeRectArr;
 	
 	@Override
 	public void initialize() {
-		background = new BackgroundLayer("bounceBall/bounce_background.gif",0,0);
+		//Initialize Game objects
 		B = new Ball(20,695,20);
-		obs1 = new Rect(382,545,66,48);
-		obs2 = new Rect(504,395,38,34);
+		background = new BackgroundLayer("bounceBall/bounce_background.gif",0,0);
+		//Initialize collision detection objects
+		rArr = new Rect[3];lifeRectArr = new Rect[1];//arrays to hold rects for obstacles, lives
+		obs1 = new Rect(382,545,66,48);obs2 = new Rect(504,395,38,34);
 		obs3 = new Rect(880,252,64,46);
-		rArr[0] = obs1;
-		rArr[1] = obs2;
-		rArr[2] = obs3;
+		rArr[0] = obs1;rArr[1] = obs2;rArr[2] = obs3;
 		lifeR = new Rect(703,202,38,38);
 		lifeRectArr[0] = lifeR;
-		//bottom1 = new Rect(0,250,100,200);
-		//for(int i=0;i<2;i++){
-		///rArr[0] = bottom0;
-		//rArr[1] = bottom1;
-		//}
+		
+		firstLine = new Line(252,580,252,715);
+		secondLine = new Line(450,500,450,715);
+		thirdLine = new Line(492,400,492,717);
+		fourthLine = new Line(544,300,544,717);
+		fifthLine = new Line(595,200,595,717);
+		sixthLine = new Line(646,100,646,717);
+		seventhLine = new Line(697,100,697,717);
+		eigthLine = new Line(748,100,748,717);
+		ninthLine = new Line(799,100,799,717);
+		tenthLine = new Line(945,100,945,717);
+		eleventhLine = new Line(995,100,995,717);
+		twelveLine = new Line(1090,100,1090,717);
+		thirteenthLine = new Line(1140,100,1140,717);
 	}
 
 	@Override
 	public void respondToInput() {
-		//tank.respondToInput(input);
 		B.respondToInput(input);
 		if(input[_D])	Camera2D.moveRightBy(50);
 		if(input[_A])	Camera2D.moveLeftBy(50);
@@ -110,9 +106,6 @@ public class Drawing extends GameApplet {
 	}
 	
 	public void paint(Graphics g){
-		//layer1.draw(g);
-//		tank.draw(g);
-//		btank.draw(g);
 		background.draw(g);
 		g.setColor(Color.BLUE);
 
@@ -156,67 +149,13 @@ public class Drawing extends GameApplet {
 			g.drawString("Game Over!", 520, 375);
 			//paused = true;
 		}
-		//bottom1.draw(g);
 	}
-		 
+
 	
-//	public void paint(Graphics g){
-//		g.drawImage(background, 0, 0, this);
-//		L.draw(g);
-//		L2.draw(g);
-//		C.draw(g);
-//		tank.draw(g);
-//		
-//		if(L.distanceTo((int)C.x, (int)C.y)< C.r || L2.distanceTo((int)C.x, (int)C.y)< C.r) message = "Collision";
-//		else							message = "No Collision";
-//		g.drawString(message, 0, 10);
-//		
-//		/*
-//		battlelord.draw(g);
-//		greenguy.draw(g);
-//		guard.draw(g);
-//		//r.draw(g);r2.draw(g);
-//		
-//		//g.drawString(message, 0, 25);
-//		//g.drawString(message2, 50, 25);
-//		//*/
-//	}
-//	
-//	
-//	public void init(){
-//		
-//
-//		
-//		requestFocus();
-//		addKeyListener(this);
-//		addMouseListener(this);
-//		
-//		t = new Thread(this);
-//		t.start();
-//	}
-//	
-//
-//	@Override
-//	public void keyTyped(KeyEvent e) {}
-//
-//	@Override
-//	public void keyPressed(KeyEvent e) {
-//		if (e.getKeyCode() == KeyEvent.VK_LEFT)	leftPressed = true;
-//		if (e.getKeyCode() == KeyEvent.VK_RIGHT) rightPressed = true;
-//		if (e.getKeyCode() == KeyEvent.VK_UP)	upPressed = true;
-//		if (e.getKeyCode() == KeyEvent.VK_DOWN)	downPressed = true;
-//	}
-//
-//	@Override
-//	public void keyReleased(KeyEvent e) {
-//		if (e.getKeyCode() == KeyEvent.VK_LEFT)	leftPressed = false;
-//		if (e.getKeyCode() == KeyEvent.VK_RIGHT) rightPressed = false;
-//		if (e.getKeyCode() == KeyEvent.VK_UP)	upPressed = false;
-//		if (e.getKeyCode() == KeyEvent.VK_DOWN)	downPressed = false;
-//	}
-//	
-//	String message = "0";
-//	String message2 = "Missed";
+	
+	
+	
+
 //
 //	
 //

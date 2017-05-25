@@ -58,19 +58,18 @@ public class CircleBetter {
 	}
 	
 	public void jumpUp() {
-		//y -= dy;
 		startJump();
 		rectangle.x = (int)x-r;
 		rectangle.y = (int)y-r;
 	}
-
-//	public void moveDownBy(int dy) {
-//		y += dy;
-//	}
+	
+	public void stopJump(){
+		endJump();
+	}
 	
 	private void startJump(){
 		if(isOnGround){
-	        velocityY = -11.0;
+	        velocityY = -12.0;
 	        isOnGround = false;
 	    }
 	}
@@ -107,20 +106,12 @@ public class CircleBetter {
 	    
 //	    if(x < 10 || x > 190)
 //	        velocityX *= -1;
-//	    if(x < 20)	velocityX *= -1;
+	    if(x < 20)	velocityX *= -1;
 		rectangle.x = (int)x-r;
 		rectangle.y = (int)y-r;
 		
 	}
 	
-//	public void hasCollidedWith(Rect[] rArr){
-//		for(int i = 0; i<rArr.length;i++){
-//			if (rectangle.hasCollidedWith(rArr[i])){
-//				hasCollided = true;
-//				break;
-//			}
-//		}
-//	}
 	public boolean hasCollidedWith(Rect rt){
 		if (rectangle.hasCollidedWith(rt)){
 			hasCollided = true;
