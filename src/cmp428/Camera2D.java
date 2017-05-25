@@ -1,5 +1,6 @@
 package cmp428;
 
+
 public class Camera2D {
 	static double x,y;
 	
