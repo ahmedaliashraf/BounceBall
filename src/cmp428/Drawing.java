@@ -13,9 +13,19 @@ import java.awt.event.MouseListener;
 
 public class Drawing extends GameApplet {
 //	Image background = Toolkit.getDefaultToolkit().getImage("bounceBall/bounce_background.gif");
-//	Line groundLine = new Line(600,278,0,278);
-//	Line midLine = new Line(450,158,0,158);
-//	Line ceilingLine = new Line(0,41,600,41);
+	Line firstLine = new Line(252,580,252,715);
+	Line secondLine = new Line(450,500,450,715);
+	Line thirdLine = new Line(492,400,492,717);
+	Line fourthLine = new Line(544,300,544,717);
+	Line fifthLine = new Line(595,200,595,717);
+	Line sixthLine = new Line(646,100,646,717);
+	Line seventhLine = new Line(697,100,697,717);
+	Line eigthLine = new Line(748,100,748,717);
+	Line ninthLine = new Line(799,100,799,717);
+	Line tenthLine = new Line(945,100,945,717);
+	Line eleventhLine = new Line(995,100,995,717);
+	Line twelveLine = new Line(1090,100,1090,717);
+	Line thirteenthLine = new Line(1140,100,1140,717);
 //	Ball B = new Ball(20,257,20);
 	
 //	Tank tank = new Tank(200,200,0);
@@ -23,15 +33,24 @@ public class Drawing extends GameApplet {
 	
 	Ball B;
 	BackgroundLayer background;
-	Rect bottom0;
+	Rect obs1,obs2,obs3;
+	Rect lifeR;
 //	Rect bottom1;
-//	Rect[] rArr = new Rect[1];
+	Rect[] rArr = new Rect[3];
+	Rect[] lifeRectArr = new Rect[1];
 	
 	@Override
 	public void initialize() {
 		background = new BackgroundLayer("bounceBall/bounce_background.gif",0,0);
 		B = new Ball(20,695,20);
-		bottom0 = new Rect(0,278,255,40);
+		obs1 = new Rect(382,545,66,48);
+		obs2 = new Rect(504,395,38,34);
+		obs3 = new Rect(880,252,64,46);
+		rArr[0] = obs1;
+		rArr[1] = obs2;
+		rArr[2] = obs3;
+		lifeR = new Rect(703,202,38,38);
+		lifeRectArr[0] = lifeR;
 		//bottom1 = new Rect(0,250,100,200);
 		//for(int i=0;i<2;i++){
 		///rArr[0] = bottom0;
@@ -74,8 +93,20 @@ public class Drawing extends GameApplet {
 //		}else{
 //			//C.hitCeiling = false;
 //		}
-		//B.hasCollidedWith(rArr);
-
+		for(int i = 0; i<rArr.length;i++){
+			if(B.hasCollidedWith(rArr[i])){
+				B.die();
+				B.moveTo(20,695);
+			}
+		}
+		for(int i = 0; i<lifeRectArr.length;i++){
+			if (lifeRectArr[i].active){
+				if(B.hasCollidedWith(lifeRectArr[i])){
+					B.addLife();
+					lifeRectArr[i].active = false;
+				}
+			}
+		}
 	}
 	
 	public void paint(Graphics g){
@@ -83,19 +114,48 @@ public class Drawing extends GameApplet {
 //		tank.draw(g);
 //		btank.draw(g);
 		background.draw(g);
-		//ceilingLine.draw(g);
-		//midLine.draw(g);
-		//groundLine.draw(g);
+		g.setColor(Color.BLUE);
+
+//		firstLine.draw(g);
+//		secondLine.draw(g);
+//		thirdLine.draw(g);
+//		fourthLine.draw(g);
+//		fifthLine.draw(g);
+//		sixthLine.draw(g);
+//		seventhLine.draw(g);
+//		eigthLine.draw(g);
+//		ninthLine.draw(g);
+//		tenthLine.draw(g);
+//		eleventhLine.draw(g);
+//		twelveLine.draw(g);
+//		thirteenthLine.draw(g);
+		
 		g.drawImage(Toolkit.getDefaultToolkit().getImage("bounceBall/door.jpg"), 1170 , 560, this);
 		B.draw(g);
+		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 14));
+		g.setColor(Color.RED);
+		g.drawString("Lives: "+Integer.toString(B.lives), 20, 20);
 		
 		if(B.x>=1200 && B.y>=600){
 			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 100));
 			g.setColor(Color.BLUE);
-			g.drawString("You Won!", 620, 375);
+			g.drawString("You Won!", 420, 375);
 			paused = true;
 		}
-		//bottom0.draw(g);
+		
+		//g.drawString(Double.toString(firstLine.distanceTo((int)B.x+20, (int)B.y)), 50, 50);
+//		for (int i = 0; i<rArr.length;i++){
+//			rArr[i].draw(g);
+//		}
+//		for (int i = 0; i<lifeRectArr.length;i++){
+//			lifeRectArr[i].draw(g);
+//		}
+		if (B.lives==0){
+			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 100));
+			g.setColor(Color.RED);
+			g.drawString("Game Over!", 520, 375);
+			//paused = true;
+		}
 		//bottom1.draw(g);
 	}
 		 

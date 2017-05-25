@@ -45,9 +45,11 @@ public class CircleBetter {
 	}
 	
 	public void moveBackwardBy(int dx){
-		x -= dx;
-		rectangle.moveLeftBy(dx);
-		Camera2D.moveLeftBy(dx);
+		if(x-20>0){
+			x -= dx;
+			rectangle.moveLeftBy(dx);
+			//Camera2D.moveLeftBy(dx);
+		}
 	}
 	
 	public void moveBy(int dx, int dy){
@@ -119,10 +121,12 @@ public class CircleBetter {
 //			}
 //		}
 //	}
-	public void hasCollidedWith(Rect rt){
+	public boolean hasCollidedWith(Rect rt){
 		if (rectangle.hasCollidedWith(rt)){
 			hasCollided = true;
+			return true;
 		}
+		return false;
 	}
 	
 	private void updateCurrentGround(){
