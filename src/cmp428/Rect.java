@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class Rect {
 	int x,y,w,h;
-	boolean active;
 
 	public Rect(int x, int y, int w, int h) {
 		super();
@@ -12,7 +11,6 @@ public class Rect {
 		this.y = y;
 		this.w = w;
 		this.h = h;
-		active = true;
 	}
 	
 	public boolean contains(int mx, int my){
@@ -45,9 +43,5 @@ public class Rect {
 	public void draw (Graphics g){
 		g.setColor(Color.RED);
 		g.drawRect(x, y, w, h);
-		if (!active){
-			g.setColor(Color.CYAN);
-			g.fillRect(x, y, w, h);
-		}
 	}
 }

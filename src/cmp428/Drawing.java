@@ -22,10 +22,10 @@ public class Drawing extends GameApplet {
 	
 	Ball B;
 	BackgroundLayer background;
-	Rect obs1,obs2,obs3;
-	Rect lifeR;
-	Rect[] rArr;
-	Rect[] lifeRectArr;
+	Spike obs1,obs2,obs3,obs4;
+	Life lifeR;
+	Spike[] rArr;
+	Life[] lifeRectArr;
 	
 	@Override
 	public void initialize() {
@@ -33,11 +33,11 @@ public class Drawing extends GameApplet {
 		B = new Ball(20,695,20);
 		background = new BackgroundLayer("bounceBall/bounce_background.gif",0,0);
 		//Initialize collision detection objects
-		rArr = new Rect[3];lifeRectArr = new Rect[1];//arrays to hold rects for obstacles, lives
-		obs1 = new Rect(382,545,66,48);obs2 = new Rect(504,395,38,34);
-		obs3 = new Rect(880,252,64,46);
-		rArr[0] = obs1;rArr[1] = obs2;rArr[2] = obs3;
-		lifeR = new Rect(703,202,38,38);
+		rArr = new Spike[4];lifeRectArr = new Life[1];//arrays to hold rects for obstacles, lives
+		obs1 = new Spike(382,565,22,30,"bounceBall/spike.png");obs2 = new Spike(510,400,22,30,"bounceBall/spike.png");
+		obs3 = new Spike(880,272,22,30,"bounceBall/spike.png");obs4 = new Spike(1050,470,22,30,"bounceBall/spike.png");
+		rArr[0] = obs1;rArr[1] = obs2;rArr[2] = obs3;rArr[3]=obs4;
+		lifeR = new Life(703,202,38,38,"bounceBall/life.png");
 		lifeRectArr[0] = lifeR;
 		
 		firstLine = new Line(252,580,252,715);
@@ -96,10 +96,10 @@ public class Drawing extends GameApplet {
 			}
 		}
 		for(int i = 0; i<lifeRectArr.length;i++){
-			if (lifeRectArr[i].active){
+			if (lifeRectArr[i].isActive() && B.getLives()<3){
 				if(B.hasCollidedWith(lifeRectArr[i])){
 					B.addLife();
-					lifeRectArr[i].active = false;
+					lifeRectArr[i].setActive(false);
 				}
 			}
 		}
@@ -124,10 +124,14 @@ public class Drawing extends GameApplet {
 //		thirteenthLine.draw(g);
 		
 		g.drawImage(Toolkit.getDefaultToolkit().getImage("bounceBall/door.jpg"), 1170 , 560, this);
-		B.draw(g);
-		g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 14));
-		g.setColor(Color.RED);
-		g.drawString("Lives: "+Integer.toString(B.lives), 20, 20);
+
+		int counter = 5;
+		for (int i = 0; i<B.getLives();i++){
+			Life hp = new Life(counter,5,38,38,"bounceBall/life.png");
+			hp.draw(g);
+			counter+=38;
+			hp.setActive(false);
+		}
 		
 		if(B.x>=1200 && B.y>=600){
 			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 100));
@@ -137,18 +141,20 @@ public class Drawing extends GameApplet {
 		}
 		
 		//g.drawString(Double.toString(firstLine.distanceTo((int)B.x+20, (int)B.y)), 50, 50);
-//		for (int i = 0; i<rArr.length;i++){
-//			rArr[i].draw(g);
-//		}
-//		for (int i = 0; i<lifeRectArr.length;i++){
-//			lifeRectArr[i].draw(g);
-//		}
-		if (B.lives==0){
+		for (int i = 0; i<rArr.length;i++){
+			rArr[i].draw(g);
+		}
+		for (int i = 0; i<lifeRectArr.length;i++){
+			lifeRectArr[i].draw(g);
+		}
+		if (B.getLives()==0){
 			g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 100));
 			g.setColor(Color.RED);
 			g.drawString("Game Over!", 520, 375);
 			//paused = true;
 		}
+		
+		B.draw(g);
 	}
 
 	

@@ -1,8 +1,7 @@
 package cmp428;
 
 public class Ball extends CircleBetter {
-	Rect rectangle;
-	int lives;
+	private int lives;
 	public Ball(double x, double y, int r) {
 		super(x, y, r);
 		lives = 3;
@@ -30,6 +29,14 @@ public class Ball extends CircleBetter {
 	public void moveTo(double x, double y){
 		this.x = x;
 		this.y = y;
+	}
+
+	public int getLives() {
+		return lives;
+	}
+
+	public void setLives(int lives) {
+		this.lives = lives;
 	}
 
 }
