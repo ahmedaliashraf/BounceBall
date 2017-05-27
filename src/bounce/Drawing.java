@@ -1,4 +1,4 @@
-package cmp428;
+package bounce;
 
 import java.applet.Applet;
 import java.awt.Color;
@@ -34,8 +34,10 @@ public class Drawing extends GameApplet {
 		background = new BackgroundLayer("bounceBall/bounce_background.gif",0,0);
 		//Initialize collision detection objects
 		rArr = new Spike[4];lifeRectArr = new Life[1];//arrays to hold rects for obstacles, lives
-		obs1 = new Spike(382,565,22,30,"bounceBall/spike.png");obs2 = new Spike(510,400,22,30,"bounceBall/spike.png");
-		obs3 = new Spike(880,272,22,30,"bounceBall/spike.png");obs4 = new Spike(1050,470,22,30,"bounceBall/spike.png");
+		obs1 = new Spike(382,565,22,30,"bounceBall/spike.png");
+		obs2 = new Spike(510,400,22,30,"bounceBall/spike.png");
+		obs3 = new Spike(880,272,22,30,"bounceBall/spike.png");
+		obs4 = new Spike(1050,470,22,30,"bounceBall/spike.png");
 		rArr[0] = obs1;rArr[1] = obs2;rArr[2] = obs3;rArr[3]=obs4;
 		lifeR = new Life(703,202,38,38,"bounceBall/life.png");
 		lifeRectArr[0] = lifeR;
@@ -71,10 +73,12 @@ public class Drawing extends GameApplet {
 	@Override
 	public void handleCollisions() {
 		//Collision detection
-//		double d = groundLine.distanceTo((int)(C.x), (int)(C.y));
+//		double d = firstLine.distanceTo((int)(B.x), (int)(B.y));
 //		
-//		if (d<C.r){
-//			C.moveBy((int)((C.r-d)*groundLine.yv), (int)((d-C.r)*groundLine.xv));
+//		if (d<B.r){
+//			//B.moveBy((int)((B.r-d)*firstLine.getYV()), (int)((d-B.r)*firstLine.getXV()));
+//			B.moveOnlyXBy((int)((B.r-d)*firstLine.getYV()));
+//			B.velocityX = 0.0;
 //			//C.isOnGround = true;
 //		}else{
 //			//C.isOnGround = false;

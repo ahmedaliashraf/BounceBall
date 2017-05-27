@@ -1,5 +1,11 @@
-package cmp428;
-
+package bounce;
+/**
+ * Extending Rect class, Life defines life objects in the game
+ * which the player can potentially use the get more lives
+ * 
+ * @author Ahmed Ashraf
+ *
+ */
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
