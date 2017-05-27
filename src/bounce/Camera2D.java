@@ -1,4 +1,4 @@
-package cmp428;
+package bounce;
 
 
 public class Camera2D {

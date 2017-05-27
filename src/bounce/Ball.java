@@ -1,4 +1,12 @@
-package cmp428;
+package bounce;
+
+/**
+ * Extending CircleBetter class, Ball defines the player object 
+ * (i.e player is the ball)
+ * 
+ * @author Ahmed Ashraf
+ *
+ */
 
 public class Ball extends CircleBetter {
 	private int lives;

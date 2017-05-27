@@ -1,4 +1,4 @@
-package cmp428;
+package bounce;
 
 public interface Lookup {
 	

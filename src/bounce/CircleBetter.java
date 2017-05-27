@@ -1,4 +1,4 @@
-package cmp428;
+package bounce;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -55,6 +55,10 @@ public class CircleBetter {
 	public void moveBy(int dx, int dy){
 		x += dx;
 		y += dy;
+	}
+	
+	public void moveOnlyXBy(int dx){
+		x += dx;
 	}
 	
 	public void jumpUp() {

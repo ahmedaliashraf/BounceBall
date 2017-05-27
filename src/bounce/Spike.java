@@ -1,4 +1,12 @@
-package cmp428;
+package bounce;
+
+/**
+ * Extending Rect class, Spike defines 
+ * the obstacle objects player will face
+ * 
+ * @author Ahmed Ashraf
+ *
+ */
 
 import java.awt.Graphics;
 import java.awt.Image;

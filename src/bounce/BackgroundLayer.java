@@ -1,4 +1,11 @@
-package cmp428;
+package bounce;
+
+/**
+ * Defines image to be drawn as the background
+ * 
+ * @author Ahmed Ashraf
+ *
+ */
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -6,8 +13,8 @@ import java.awt.Toolkit;
 
 public class BackgroundLayer {
 	
-	Image image;
-	double x,y;
+	private Image image;
+	private double x,y;
 	
 	public BackgroundLayer(String fileName, double x, double y) {
 		image = Toolkit.getDefaultToolkit().getImage(fileName);
