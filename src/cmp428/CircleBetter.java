@@ -9,7 +9,7 @@ public class CircleBetter {
 	int r;
 	double velocityX = 0.0;
 	double velocityY = 0.0;
-	double gravity = 0.3;
+	double gravity = 0.4;
 	//double currenGroundX;
 	double currentGroundY;
 	boolean isOnGround,hitCeiling;
