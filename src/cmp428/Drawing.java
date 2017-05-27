@@ -89,6 +89,7 @@ public class Drawing extends GameApplet {
 //		}else{
 //			//C.hitCeiling = false;
 //		}
+		
 		for(int i = 0; i<rArr.length;i++){
 			if(B.hasCollidedWith(rArr[i])){
 				B.die();

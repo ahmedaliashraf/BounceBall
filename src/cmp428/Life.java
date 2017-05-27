@@ -27,7 +27,7 @@ public class Life extends Rect{
 	public void draw (Graphics g){
 		//g.setColor(Color.RED);
 		//g.drawRect(x, y, w, h);
-		if(active)	g.drawImage(image, x, y, null);
+		if(active)	g.drawImage(image, getX(), getY(), null);
 	}
 	
 	
