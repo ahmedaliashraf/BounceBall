@@ -53,6 +53,14 @@ public class Line {
 		this.y2 = y2;
 	}
 
+	public double getXV() {
+		return xv;
+	}
+
+	public double getYV() {
+		return yv;
+	}
+
 	public double distanceTo(int x, int y){
 		
 		return (x-x1)*yv - (y-y1)*xv;
