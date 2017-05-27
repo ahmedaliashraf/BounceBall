@@ -59,8 +59,8 @@ public class CircleBetter {
 	
 	public void jumpUp() {
 		startJump();
-		rectangle.x = (int)x-r;
-		rectangle.y = (int)y-r;
+		rectangle.setX((int)x-r);
+		rectangle.setY((int)y-r);
 	}
 	
 	public void stopJump(){
@@ -107,8 +107,8 @@ public class CircleBetter {
 //	    if(x < 10 || x > 190)
 //	        velocityX *= -1;
 	    if(x < 20)	velocityX *= -1;
-		rectangle.x = (int)x-r;
-		rectangle.y = (int)y-r;
+		rectangle.setX((int)x-r);
+		rectangle.setY((int)y-r);
 		
 	}
 	
